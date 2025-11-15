@@ -376,31 +376,27 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  // const arr = [];
-  // const result = [];
-  // for (let m = 0; m < matrix[0].length; m += 1) {
-  //   arr[m] = [];
-  // }
-  // for (let i = 0; i < matrix.length; i += 1) {
-  //   for (let k = 0; k < matrix[i].length; k += 1) {
-  //     arr[k][i] = matrix[i][k];
-  //   }
-  // }
-  // for (let j = 0; j < matrix[0].length; j += 1) {
-  //   const reversed = [];
-  //   let m = 0;
-  //   for (let i = arr[j].length - 1; i >= 0; i -= 1) {
-  //     reversed[m] = arr[j][i];
-  //     m += 1;
-  //   }
-  //   result[j] = reversed;
-  // }
-  // for (let i = 0; i < result.length; i += 1) {
-  //   matrix[i] = result[i];
-  // }
-  // return result;
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const arr = [];
+  const result = [];
+  for (let m = 0; m < matrix[0].length; m += 1) {
+    arr[m] = [];
+  }
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let k = 0; k < matrix[i].length; k += 1) {
+      arr[k][i] = matrix[i][k];
+    }
+  }
+  for (let j = 0; j < matrix[0].length; j += 1) {
+    const reversed = [];
+    let m = 0;
+    for (let i = arr[j].length - 1; i >= 0; i -= 1) {
+      reversed[m] = arr[j][i];
+      m += 1;
+    }
+    result[j] = reversed;
+  }
+  return result;
 }
 
 /**
