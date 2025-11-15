@@ -377,6 +377,29 @@ function getSpiralMatrix(/* size */) {
  *  ]                 ]
  */
 function rotateMatrix(/* matrix */) {
+  // const arr = [];
+  // const result = [];
+  // for (let m = 0; m < matrix[0].length; m += 1) {
+  //   arr[m] = [];
+  // }
+  // for (let i = 0; i < matrix.length; i += 1) {
+  //   for (let k = 0; k < matrix[i].length; k += 1) {
+  //     arr[k][i] = matrix[i][k];
+  //   }
+  // }
+  // for (let j = 0; j < matrix[0].length; j += 1) {
+  //   const reversed = [];
+  //   let m = 0;
+  //   for (let i = arr[j].length - 1; i >= 0; i -= 1) {
+  //     reversed[m] = arr[j][i];
+  //     m += 1;
+  //   }
+  //   result[j] = reversed;
+  // }
+  // for (let i = 0; i < result.length; i += 1) {
+  //   matrix[i] = result[i];
+  // }
+  // return result;
   throw new Error('Not implemented');
 }
 
@@ -395,6 +418,26 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(/* arr */) {
+  // const stack = [[0, arr.length - 1]];
+  //
+  // while (stack.length > 0) {
+  //   const [start, end] = stack.pop();
+  //   if (start < end) {
+  //     const pivot = arr[end];
+  //     let i = start;
+  //     for (let j = start; j < end; j += 1) {
+  //       if (arr[j] < pivot) {
+  //         [arr[i], arr[j]] = [arr[j], arr[i]];
+  //         i += 1;
+  //       }
+  //     }
+  //     [arr[i], arr[end]] = [arr[end], arr[i]];
+  //     if (i - 1 > start) stack.push([start, i - 1]);
+  //     if (i + 1 < end) stack.push([i + 1, end]);
+  //   }
+  // }
+  //
+  // return arr;
   throw new Error('Not implemented');
 }
 
@@ -437,10 +480,50 @@ function shuffleChar(/* str, iterations */) {
  * 321321   => 322113
  *
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
-}
+function getNearestBigger(num) {
+  let temp = num;
+  let length = 0;
+  while (temp > 0) {
+    temp = Math.floor(temp / 10);
+    length += 1;
+  }
+  const digits = new Array(length);
+  temp = num;
+  for (let i = length - 1; i >= 0; i -= 1) {
+    digits[i] = temp % 10;
+    temp = Math.floor(temp / 10);
+  }
+  let i = length - 2;
+  while (i >= 0 && digits[i] >= digits[i + 1]) {
+    i -= 1;
+  }
+  if (i < 0) return num;
+  let j = length - 1;
+  while (digits[j] <= digits[i]) {
+    j -= 1;
+  }
+  let tmp = digits[i];
+  digits[i] = digits[j];
+  digits[j] = tmp;
+  let left = i + 1;
+  let right = length - 1;
 
+  while (left < right) {
+    tmp = digits[left];
+    digits[left] = digits[right];
+    digits[right] = tmp;
+
+    left += 1;
+    right -= 1;
+  }
+
+  let result = 0;
+  for (let k = 0; k < length; k += 1) {
+    result = result * 10 + digits[k];
+  }
+
+  return result;
+}
 module.exports = {
   isPositive,
   getMaxNumber,
