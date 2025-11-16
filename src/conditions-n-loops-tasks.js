@@ -411,27 +411,27 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(matrix) {
-  const arr = [];
-  const result = [];
-  for (let m = 0; m < matrix[0].length; m += 1) {
-    arr[m] = [];
-  }
-  for (let i = 0; i < matrix.length; i += 1) {
-    for (let k = 0; k < matrix[i].length; k += 1) {
-      arr[k][i] = matrix[i][k];
+function rotateMatrix(m) {
+  const n = m.length;
+  const matrix = m;
+  for (let i = 0; i < n; i += 1) {
+    for (let j = i; j < n; j += 1) {
+      const temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
     }
   }
-  for (let j = 0; j < matrix[0].length; j += 1) {
-    const reversed = [];
-    let m = 0;
-    for (let i = arr[j].length - 1; i >= 0; i -= 1) {
-      reversed[m] = arr[j][i];
-      m += 1;
+  for (let i = 0; i < n; i += 1) {
+    let left = 0;
+    let right = n - 1;
+    while (left < right) {
+      const temp = matrix[i][left];
+      matrix[i][left] = matrix[i][right];
+      matrix[i][right] = temp;
+      left += 1;
+      right -= 1;
     }
-    result[j] = reversed;
   }
-  return result;
 }
 
 /**
