@@ -448,28 +448,28 @@ function rotateMatrix(m) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  // const stack = [[0, arr.length - 1]];
-  //
-  // while (stack.length > 0) {
-  //   const [start, end] = stack.pop();
-  //   if (start < end) {
-  //     const pivot = arr[end];
-  //     let i = start;
-  //     for (let j = start; j < end; j += 1) {
-  //       if (arr[j] < pivot) {
-  //         [arr[i], arr[j]] = [arr[j], arr[i]];
-  //         i += 1;
-  //       }
-  //     }
-  //     [arr[i], arr[end]] = [arr[end], arr[i]];
-  //     if (i - 1 > start) stack.push([start, i - 1]);
-  //     if (i + 1 < end) stack.push([i + 1, end]);
-  //   }
-  // }
-  //
-  // return arr;
-  throw new Error('Not implemented');
+function sortByAsc(array) {
+  const arr = array;
+  const stack = [[0, arr.length - 1]];
+
+  while (stack.length > 0) {
+    const [start, end] = stack.pop();
+    if (start < end) {
+      const pivot = arr[end];
+      let i = start;
+      for (let j = start; j < end; j += 1) {
+        if (arr[j] < pivot) {
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+          i += 1;
+        }
+      }
+      [arr[i], arr[end]] = [arr[end], arr[i]];
+      if (i - 1 > start) stack.push([start, i - 1]);
+      if (i + 1 < end) stack.push([i + 1, end]);
+    }
+  }
+
+  return arr;
 }
 
 /**
